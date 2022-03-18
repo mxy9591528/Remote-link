@@ -1,0 +1,117 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct TranslateLink
+{
+    int data;
+    struct TranslateLink*next;
+}T;
+void Swap(T*n,int ps1,int ps2)
+{
+    T*temp_1=n;
+    T*temp_2=n;
+    int temp;
+    while(ps1--)
+    {
+        temp_1=temp_1->next;
+    }
+    while(ps2--)
+    {
+        temp_2=temp_2->next;
+    }
+    temp=temp_1->data;
+    temp_1->data=temp_2->data;
+    temp_2->data=temp;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int*p=malloc(sizeof(int)*n);
+    for(int i=0;i<n;i++)
+        scanf("%d",&p[i]);
+    T*head=NULL,*end=NULL;
+    for(int i=0;i<n;i++)
+    {
+        T*node=(T*)malloc(sizeof(T));
+        node->data=p[i];
+        node->next=NULL;
+        if(!head)
+        {
+            head=node;
+            end=node;
+        }
+        else
+        {
+            end->next=node;
+            end=node;
+        }
+    }
+	free(p);
+	p=NULL;
+    Swap(head,0,1);
+    Swap(head,n-2,n-1);
+    T*cur=head;
+    while(cur)
+    {
+        printf("%d ",cur->data);
+        cur=cur->next;
+    }
+    return 0;
+}
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct LinkList
+{
+    int data;
+    struct LinkList*next;
+}L;
+void Addin(int*p,int n)
+{
+    for(int i=0;i<n;i++)
+        scanf("%d",&p[i]);
+}
+L*SetLinkList(int n,int*p)
+{
+    L*head=NULL,*end;
+    for(int i=0;i<n;i++)
+    {
+        L*node=malloc(sizeof(L));
+        node->data=p[i];
+        node->next=NULL;
+        if(!head)
+        {
+            head=node;
+            end=node;
+        }
+        else
+        {
+            end->next=node;
+            end=node;
+        }
+    }
+    return head;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int*pa=malloc(sizeof(int)*n);
+    int*pb=malloc(sizeof(int)*n);
+    Addin(pa,n);
+    Addin(pb,n);
+    L*ahead=SetLinkList(n, pa);
+    L*bhead=SetLinkList(n, pb);
+    L*cur=bhead;
+    while(cur)
+    {
+        cur->data+=ahead->data;
+        cur=cur->next;
+        ahead=ahead->next;
+    }
+    while(bhead)
+    {
+        printf("%d ",bhead->data);
+        bhead=bhead->next;
+    }
+}
