@@ -1,0 +1,43 @@
+#include<stdio.h>
+int main()
+{
+    long long a,b;
+    scanf("%lld %lld",&a,&b);
+    int k=a*b;
+    while(a&&b)
+    {
+        if(a>b)
+            a%=b;
+        else
+            b%=a;
+    }
+    int max=a>b?a:b;
+    printf("%lld",k/max);
+}辗转相除法
+
+#include<stdio.h>
+int main()
+{
+    int n;
+    while(~scanf("%d",&n))
+    {
+        int ret=0;
+        int sum=0;
+        if(!n)
+            return 0;
+        if(n==1)
+            printf("0\n");
+        while(1)
+        {
+            ret=n/3;
+            n=n%3+ret;
+            sum+=ret;
+            if(n<3)
+                break;
+        }
+        if(n==2)
+            sum++;
+        printf("%d\n",sum);
+    }
+    return 0;
+}汽水瓶
