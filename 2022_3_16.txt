@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+{
+    char str[5001]={0};
+    int i=0;
+    while((str[i++]=getchar())!='\n')
+    {
+        ;
+    }
+    i-=2;
+    int count=0;
+    while(str[i]!=' ')
+    {
+        count++;
+        i--;
+        if(!i)
+        {
+            count++;
+            break;
+        }
+    }
+    printf("%d",count);
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+class Data
+{
+	int Month;
+	int Day;
+	int Year;
+public:
+	Data(int a = 0, int b = 0, int c = 0)
+	{
+		this->Year = a;
+		this->Month = b;
+		this->Day = c;
+	}
+	void printdata()
+	{
+		cout << this->Day << "/" << this->Month << "/" << this->Year;
+	}
+	void setdata()
+	{
+		int a, b, c;
+		cin >> a >> b >> c;
+		this->Year = a;
+		this->Month = b;
+		this->Day = c;
+	}
+};
+int main()
+{
+	Data calender;
+	calender.setdata();
+	calender.printdata();
+}

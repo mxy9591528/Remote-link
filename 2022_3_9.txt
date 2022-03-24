@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdbool.h>
+bool judge(long long cur)
+{
+	int s, t = 0;
+	bool key = false;
+	s = cur % 10;
+	while (cur /= 10)
+	{
+		if (!key)
+		{
+			if (s == cur % 10)
+				continue;
+			else
+			{
+				t = cur % 10;
+				key = true;
+				if (!t)
+					return false;
+			}
+		}
+		else
+		{
+			if (t == cur % 10)
+				continue;
+			else
+				return false;
+		}
+	}
+	if (!t)
+		return false;
+	return true;
+}
+
+int main()
+{
+	long long i;
+	long long n;
+	while (scanf("%lld", &n) && n)
+	{
+		long long j = 1;
+		if (!n)
+			return 0;
+		while (1)
+		{
+			i = n * j++;
+			if (judge(i))
+			{
+				printf("%lld: %lld\n", n, i);
+				break;
+			}
+		}
+	}
+}//二段数

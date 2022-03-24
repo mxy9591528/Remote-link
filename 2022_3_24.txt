@@ -1,0 +1,31 @@
+char* solve(char* s, char* t ) {
+    // write code here
+    int lens=strlen(s);
+    int lent=strlen(t);
+    int sums=0;
+    int sumt=0;
+    for(int i=0;i<lens;i++)
+    {
+        int temp=s[i]-48;
+        sums+=temp*pow(10,lens-i-1);
+    }
+    for(int i=0;i<lent;i++)
+    {
+        int temp=t[i]-48;
+        sumt+=temp*pow(10,lent-i-1);
+    }
+    int ret=sums+sumt;
+    int lenp=(lens>lent?lens:lent)+1;
+    char*p=(char*)malloc(sizeof(char)*lenp);
+    if(!ret)
+        p[0]=48;
+    int i=1;
+    while(ret)
+    {
+        p[lenp-i]=ret%10+48;
+        i++;
+        ret/=10;
+    }
+    p[lenp]='\0';
+    return p ;
+}//对int数据范围内的数据进行转化
