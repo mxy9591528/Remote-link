@@ -1,0 +1,21 @@
+struct ListNode* ReverseList(struct ListNode* pHead ) {
+    // write code here
+//     struct ListNode*node,*newHead=NULL;
+//     while(pHead)
+//     {
+//         node=pHead;
+//         pHead=pHead->next;
+//         node->next=newHead;
+//         newHead=node;
+//     }
+//     return newHead;
+    struct ListNode*pre=NULL,*cur=pHead,*next;
+    while(cur)
+    {
+        next=cur->next;
+        cur->next=pre;
+        pre=cur;
+        cur=next;
+    }
+    return pre;
+}
