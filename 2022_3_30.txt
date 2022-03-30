@@ -1,0 +1,22 @@
+#include<stdio.h>
+int count_2(int n)
+{
+    int count=0;
+    while(n)
+    {
+        if(n%10==2)
+            count++;
+        n/=10;
+    }
+    return count;
+}
+int main()
+{
+    int L,R;
+    int sum=0;
+    scanf("%d %d",&L,&R);
+    for(int i=L;i<=R;i++)
+        sum+=count_2(i);
+    printf("%d",sum);
+    return 0;
+}
