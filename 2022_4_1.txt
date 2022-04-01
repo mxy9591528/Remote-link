@@ -1,0 +1,269 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#define MAX_NAME 10
+#define MAX_AGE 3
+#define MAX_GENDER 3
+#define MAX_TEL 15
+#define MAX_ADRESS 15
+#define MAX_RELATION 10
+#define INIT_CAPACITY 3
+#define ADD_CAPACITY 2
+
+#include<stdio.h>
+#include<Windows.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct Data
+{
+	char name[MAX_NAME];
+	char age[MAX_AGE];
+	char gender[MAX_GENDER];
+	char tel[MAX_TEL];
+	char adress[MAX_ADRESS];
+	char relation[MAX_RELATION];
+};
+
+typedef struct Contact
+{
+	int capacity;
+	int size;
+	struct Data*data;
+}C;
+
+enum
+{
+	EXIT,
+	ADD,
+	DEL,
+	SERCH,
+	MODIFY,
+	DISPLAY,
+	SORT,
+	SAVE,
+};
+
+void InitC(C*c);
+void LoadC(C*c);
+void AddC(C*c);
+void DelC(C*c);
+void SearchC(C*c);
+void ModifyC(C*c);
+void Display(C*c);
+void SortC(C*c);
+void SaveC(C*c);
+
+void menu()
+{
+	printf("*************************************\n");
+	printf("*******        通讯录         *******\n");
+	printf("*******     1.增加联系人      *******\n");
+	printf("*******     2.删除联系人      *******\n");
+	printf("*******     3.查找联系人      *******\n");
+	printf("*******     4.修改联系人      *******\n");
+	printf("*******     5.展示联系人      *******\n");
+	printf("*******     6.联系人排序      *******\n");
+	printf("*******     7.保存联系人      *******\n");
+	printf("*******     0.退出通讯录      *******\n");
+	printf("*************************************\n");
+}
+
+void startwork(C*c)
+{
+	InitC(c);
+	LoadC(c);
+	int choice;
+	while(1)
+	{
+		system("cls");
+		menu();
+		printf("请选择:>\n");
+		scanf("%d", &choice);
+		switch (choice)
+		{
+		case ADD:
+			AddC(c);
+			system("pause");
+			break;
+		case DEL:
+			DelC(c);
+			system("pause");
+			break;
+		case SERCH:
+			SearchC(c);
+			system("pause");
+			break;
+		case MODIFY:
+			ModifyC(c);
+			system("pause");
+			break;
+		case SORT:
+			SortC(c);
+			system("pause");
+			break;
+		case SAVE:
+			SaveC(c);
+			system("pause");
+			break;
+		case DISPLAY:
+			Display(c);
+			system("pause");
+			break;
+		case EXIT:
+			SaveC(c);
+			exit(0);
+			break;
+		default:
+			printf("选择错误\n");
+			break;
+		}
+	}
+}
+
+int main()
+{
+	C c;
+	startwork(&c);
+	return 0;
+}
+
+void InitC(C*c)
+{
+	c->capacity = INIT_CAPACITY;
+	c->data = (struct Data*)calloc(c->capacity,sizeof(struct Data));
+	c->size = 0;
+}
+
+void checkcapacity(C*c)
+{
+	if (c->size == c->capacity)
+	{
+		c->capacity += ADD_CAPACITY;
+		c->data = (struct Data*)realloc(c->data, sizeof(struct Data)*(c->capacity));
+	}
+}
+void LoadC(C*c)
+{
+	FILE*p = fopen("data.contact", "rb");
+	while (fread(&(c->data[c->size]), sizeof(c->data[0]), 1, p))
+	{
+		c->size++;
+		checkcapacity(c);
+	}
+	fclose(p);
+	printf("载入成功\n");
+}
+
+int Getindex(C*c)
+{
+	int index;
+	char temp[MAX_NAME];
+	printf("请输入姓名：\n");
+	scanf("%s", &temp);
+	for (int i = 0; i < c->size; i++)
+	{
+		if (!strcmp(c->data[i].name, temp))
+		{
+			index = i;
+			return index;
+		}
+	}
+	printf("无此人信息\n");
+	return -1;
+}
+
+void Receive(C*c,int n)
+{
+	printf("请输入姓名：\n");
+	scanf("%s", &c->data[n].name);
+	printf("请输入年龄：\n");
+	scanf("%s", &c->data[n].age);
+	printf("请输入性别：\n");
+	scanf("%s", &c->data[n].gender);
+	printf("请输入电话：\n");
+	scanf("%s", &c->data[n].tel);
+	printf("请输入地址：\n");
+	scanf("%s", &c->data[n].adress);
+	printf("请备注关系：\n");
+	scanf("%s", &c->data[n].relation);
+}
+
+void AddC(C*c)
+{
+	checkcapacity(c);
+	Receive(c,c->size);
+	c->size++;
+	printf("添加成功\n");
+}
+
+void DelC(C*c)
+{
+	int n = Getindex(c);
+	if(n!=-1)
+	{
+		for (int i = n; i < c->size; i++)
+			c->data[i] = c->data[i + 1];
+		c->size--;
+		printf("删除成功!\n");
+	}
+}
+
+void SearchC(C*c)
+{
+	int n = Getindex(c);
+	if (n != -1)
+	{
+		printf("姓名     年龄   性别  电话         地址        关系     \n");
+		printf("%-9s%-7s%-6s%-13s%-12s%-3s\n",
+			c->data[n].name,
+			c->data[n].age,
+			c->data[n].gender,
+			c->data[n].tel,
+			c->data[n].adress,
+			c->data[n].relation);
+	};
+}
+
+
+
+void ModifyC(C*c)
+{
+	int n = Getindex(c);
+	if (n)
+		Receive(c, n);
+	printf("修改成功\n");
+}
+
+int s_cmp(void*e1, void*e2)
+{
+	return (int)*((char*)e1) - ((int)*((char*)e2));
+}
+
+void SortC(C*c)
+{
+	qsort(c->data, c->size, sizeof(c->data[0]), s_cmp);
+}
+
+void SaveC(C*c)
+{
+	FILE*p = fopen("data.contact", "wb");
+	int n = c->size;
+	for (int i = 0; i < c->size; i++)
+		fwrite(&(c->data[i]), sizeof(c->data[0]), 1, p);
+	fclose(p);
+}
+
+void Display(C*c)
+{
+	printf("姓名     年龄   性别  电话         地址        关系     \n");
+	for (int i = 0; i <c->size; i++)
+	{
+		printf("%-9s%-7s%-6s%-13s%-12s%-3s\n",
+			c->data[i].name,
+			c->data[i].age,
+			c->data[i].gender,
+			c->data[i].tel,
+			c->data[i].adress,
+			c->data[i].relation);
+	}
+}
