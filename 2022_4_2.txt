@@ -1,0 +1,70 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param pHead ListNode类 
+ * @param k int整型 
+ * @return ListNode类
+ */
+struct ListNode* FindKthToTail(struct ListNode* pHead, int k ) {
+    // write code here
+    if(!pHead)
+        return pHead;
+    struct ListNode*slow=pHead,*fast=pHead;
+    while(k--)
+    {
+        fast=fast->next;
+        if(!fast&&k)
+            return fast;
+    }
+    while(fast)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+    return slow;
+}
+
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @param n int整型 
+ * @return ListNode类
+ */
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n ) {
+    // write code here
+    struct ListNode*fast=head,*slow=head,*prev;
+    while(n--)
+    {
+        fast=fast->next;
+    }
+    if(!fast)
+       return head->next;
+    while(fast)
+    {
+        fast=fast->next;
+        prev=slow;
+        slow=slow->next;
+    }
+    prev->next=slow->next;
+    free(slow);
+    return head;
+}
