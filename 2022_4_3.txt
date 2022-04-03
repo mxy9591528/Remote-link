@@ -1,0 +1,57 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+
+/**
+ * 
+ * @param pHead1 ListNode类 
+ * @param pHead2 ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* Merge(struct ListNode* pHead1, struct ListNode* pHead2 ) {
+    // write code here
+    struct ListNode*head=NULL,*tail=NULL;
+    if(!pHead1)
+        return pHead2;
+    if(!pHead2)
+        return pHead1;
+    while(pHead1&&pHead2)
+    {
+        if(pHead1->val<pHead2->val)
+        {
+            if(!head)
+            {
+                head=tail=pHead1;
+            }
+            else
+            {
+                tail->next=pHead1;
+                tail=tail->next;
+            }
+            pHead1=pHead1->next;
+        }
+        else
+        {
+            if(!head)
+            {
+                head=tail=pHead2;
+            }
+            else
+            {
+                tail->next=pHead2;
+                tail=tail->next;
+            }
+            pHead2=pHead2->next;
+        }
+    }
+    if(!pHead1)
+        tail->next=pHead2;
+    else
+        tail->next=pHead1;
+    return head;
+}
