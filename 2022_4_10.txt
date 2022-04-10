@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define INITCAPACITY 10
+#define ADDNUM 2
+
+typedef int STD;
+
+struct Stack
+{
+	STD*base;
+	STD*top;
+	int capacity;
+};
+
+void InitStack(struct Stack*pf,STD*p)
+{
+	pf->base = pf->top = p;
+	pf->capacity = INITCAPACITY;
+}
+void checkcapacity(struct Stack*pf)
+{
+	if (pf->top - pf->base == pf->capacity)
+	{
+		pf->base = realloc(pf->base, sizeof(int)*(pf->capacity + ADDNUM));
+		pf->capacity += ADDNUM;
+	}
+}
+void Stackpush(struct Stack*pf,int n)
+{
+	checkcapacity(pf);
+	*pf->top = n;
+	pf->top++;
+
+}
+
+STD*Stackpop(struct Stack*pf)
+{
+	if (pf->top == pf->base)
+		return NULL;
+	pf->top--;
+	int*n = pf->top;
+	return n;
+}
+int main()
+{
+	struct Stack s;
+	STD*p= malloc(sizeof(int)*INITCAPACITY);
+	InitStack(&s, p);
+	/*for (int i = 0; i < 12; i++)
+		Stackpush(&s, i);*/
+	for (int i = 0; i < 12; i++)
+	{
+		int*e = Stackpop(&s);
+		if (!e)
+		{
+			printf("空栈\n");
+			break;
+		}
+		else
+			printf("%d ", *e);
+	}
+	return 0;
+}
