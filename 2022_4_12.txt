@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#include<assert.h>
+
+typedef int Queendata;
+
+typedef struct Qlist
+{
+	int data;
+	struct Qlist*next;
+}Q;
+
+typedef struct Queue
+{
+	struct Queue*front;
+	struct Queue*last;
+}Queue;
+
+void setQueen(Queendata*p,int*n)
+{
+	for (int i = 0; i <=*n; i++)
+		p[i] = i + 1;
+}
+
+void popQueen(Queendata*p,int*n,int init)
+{
+	printf("%d ", p[init-(--*n)]);
+}
+
+int main()
+{
+	Queue q;
+	int*n=malloc(sizeof(int));
+	scanf_s("%d", &*n);
+	int init = *n-1;
+	int *p = malloc(sizeof(int)*(*n));
+	setQueen(p,n);
+	while (*n)
+	{
+		popQueen(p, n, init);
+	}
+	return 0;
+}
