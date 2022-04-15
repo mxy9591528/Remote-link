@@ -1,0 +1,103 @@
+//c语言程序设计作业
+#include<stdio.h>
+#define _USE_MATH_DEFINES
+#include<math.h>
+void print()
+{
+	printf("Hello World!\n");
+}
+int add(int a, int b)
+{
+	return a + b;
+}
+double getsquare(double r,double h)
+{
+	return 2 * M_PI * r*(r + h);
+}
+double getvolume(double r, double h)
+{
+	return M_PI * r*r*h;
+}
+double getvalue(const double price, double weight)
+{
+	return price * weight;
+}
+double trianglesquare(double a, double b, double c)
+{
+	if (a + b <= c || a - b >= c)
+		return -1;
+	double p = 0.5*(a + b + c);
+	return pow(p*(p - a)*(p - b)*(p - c),0.5);
+}
+double getmax(double a, double b)
+{
+	return a > b ? a : b;
+}
+int natural_n_add(int n)
+{
+	if (n == 1)
+		return 1;
+	else
+		return n + natural_n_add(n - 1);
+}
+int natural_add(int n)
+{
+	/*int sum = 0;
+	for (int i = 1; i <= n; i++)
+		sum += i;*/
+	//高斯公式
+	return n*(1+n)/2;
+}
+int getnum(long long n)
+{
+	int count = 1;
+	while (n /= 10)
+	{
+		count++;
+	}
+	return count;
+}
+long long reverse(long long n)
+{
+	int ret = getnum(n);
+	long long sum = 0;
+	while (n)
+	{
+		sum += n % 10 * (int)pow(10, --ret);
+		n /= 10;
+	}
+	return sum;
+}
+int main()
+{
+	int a, b;
+	print();
+	printf("请分别输入两数:\n");
+	scanf("%d %d", &a, &b);
+	printf("a+b=%d\n", add(a, b));
+	double r, h;
+	printf("请输入柱体底面圆的半径以及柱体的高:\n");
+	scanf("%lf %lf", &r, &h);
+	printf("柱体表面积:%lf,柱体体积:%lf\n",getsquare(r,h),getvolume(r,h));
+	double p, w;
+	printf("请输入苹果的单价及苹果的重量:\n");
+	scanf("%lf %lf", &p, &w);
+	printf("购买苹果的总价为:%lf\n", getvalue(p, w));
+	double x, y, z;
+	printf("请输入三角形的三边长:\n");
+	scanf("%lf %lf %lf", &x, &y, &z);
+	double ret = trianglesquare(x, y, z);
+	if (ret == -1)
+		printf("三角形边长输入有误\n");
+	else
+		printf("三角形的面积为:%lf\n", ret);
+	int uplimit;
+	printf("请输入上限:\n");
+	scanf("%d", &uplimit);
+	printf("自然数和为:%d(递归) %d\n", natural_add(uplimit),natural_n_add(uplimit));
+	long long n;
+	printf("请输入逆序数:\n");
+	scanf("%lld", &n);
+	printf("逆序后的数为:%lld\n", reverse(n));
+	return 0;
+}
