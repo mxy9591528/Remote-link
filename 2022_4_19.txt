@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int(*p)[n]=(int*)malloc(sizeof(int)*n*n);
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        if(i%2)
+        {
+            int x=0;
+            int y=i;
+            while(y+1)
+            {
+                p[x][y]=++count;
+                x++;
+                y--;
+            }
+        }
+        else
+        {
+            int x=i;
+            int y=0;
+            while(x+1)
+            {
+                p[x][y]=++count;
+                x--;
+                y++;
+            }
+        }
+    }
+	for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+            printf("%d ",p[i][j]);
+        printf("\n");
+    }
+	//蛇形矩阵左上三角
+	
+	#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int(*p)[n]=(int*)malloc(sizeof(int)*n*n);
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<=i;j++)
+        {
+            ++count;
+            if(i%2)
+                p[j][i-j]=count;
+            else
+                p[i-j][j]=count;
+        }
+    }
+    for(int i=n;i<2*n-1;i++)
+    {
+        for(int j=1;j<2*n-i;j++)
+        {
+            ++count;
+            if(i%2)
+                p[j+i-n][n-j]=count;
+            else
+                p[n-j][j+i-n]=count;
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+            printf("%d ",p[i][j]);
+        printf("\n");
+    }
+    return 0;
+}
+//蛇形矩阵-方
