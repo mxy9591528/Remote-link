@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char arr[100];
+    gets(arr);
+    int cnt = 0;
+    for(int i = 0;i<strlen(arr);i++){
+        if(arr[i] != ' ' && arr[i] != '\n')
+            cnt++;
+    }
+    printf("%d",cnt);
+}
+// #include<stdio.h>
+// int main()
+// {
+//     char a[5]={};
+//     int count=0;
+//     gets(a);
+//     for(int i=0;a[i]!='\0';i++){
+//         if(a[i]!=' ')
+//             count++;
+//     }
+//     printf("%d",count);
+//     return 0;
+// }
+/*
+#include<stdio.h>
+int main()
+{
+    int n=-1;
+    char a;
+    while(scanf("%c",&a)!=EOF)
+    {
+        if(a!=' ')
+            n++;
+    }
+    printf("%d",n);
+}*/
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+#include<math.h>
+int getmax(char*a,int n)
+{
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        int ret=0;
+        for(int j=0;j<n;j++)
+        {
+            if(a[i]==a[j])
+                ret++;
+        }
+        if(ret>count)
+            count=ret;
+    }
+    return count;
+}
+int getmin(char*a,int n)
+{
+    int count=100;
+    for(int i=0;i<n;i++)
+    {
+        int ret=0;
+        for(int j=0;j<n;j++)
+        {
+            if(a[i]==a[j])
+                ret++;
+        }
+        if(ret<count)
+            count=ret;
+    }
+    return count;
+}
+bool Isprime(int n)
+{
+    if(n==1||n==0)
+        return false;
+    for(int i=2;i<sqrt(n);i++)
+    {
+        if(n%i==0)
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    char a[100]={0};
+    gets(a);
+    int len=strlen(a);
+    int k=getmax(a,len)-getmin(a,len);
+    if(Isprime(k))
+        printf("Lucky Word\n%d",k);
+    else
+        printf("No Answer\n0");
+    return 0;
+}
