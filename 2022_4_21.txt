@@ -1,0 +1,167 @@
+#include<stdio.h>
+int main()
+{
+    int n = 0,m = 0;
+scanf("%d %d",&n,&m);
+getchar();
+char mine[n+2][m+2];
+char c[n][m];
+//初始化
+for (int i = 0;i < n+2;i++)
+{
+    for (int j = 0;j < m+2;j++)
+        mine[i][j] = '.';
+}
+//埋雷
+for (int i = 1;i <= n;i++)
+{
+    for (int j = 1;j <= m;j++)
+    {
+        scanf("%c ",&mine[i][j]);
+    }
+    
+}
+//扫雷
+for (int i = 1;i <= n;i++)
+{
+    for (int j = 1;j <= m;j++)
+    {
+        if (mine[i][j] != '*')
+        {
+            c[i-1][j-1]=(8*'.'-mine[i-1][j-1]
+                         -mine[i][j-1]
+                         -mine[i+1][j-1]
+                         -mine[i+1][j]
+                         -mine[i+1][j+1]
+                         -mine[i][j+1]
+                         -mine[i-1][j+1]
+                         -mine[i-1][j])/('.'-'*')+'0';
+        }
+    }
+}
+for (int i = 1;i <= n;i++)
+{
+    for (int j = 1;j <= m;j++)
+    {
+        if (mine[i][j] != '*')
+            printf("%c",c[i-1][j-1]);
+        else
+            printf("*");
+    }
+    printf("\n");
+}
+return 0;
+}
+n,m = map(int,input().split())
+mat = ['-'*(m+2)]
+for i in range(n):
+    mat.append('-' + input() + '-')
+add = ['-'*m]
+mat.append('-'*(m+2))
+new = []
+for i in range(n+2):
+    t= []
+    for j in range(m+2):
+        t.append(mat[i][j])
+    new.append(t)
+for i in range(1,n+1):
+    for j in range(1,m+1):
+        if new[i][j] != '*':
+            count = 0
+            if new[i-1][j-1] == '*':
+                count += 1
+            if new[i-1][j] == '*':
+                count += 1
+            if new[i-1][j+1] == '*':
+                count += 1
+            if new[i][j-1] == '*':
+                count += 1
+            if new[i][j+1] == '*':
+                count += 1
+            if new[i+1][j-1] == '*':
+                count += 1
+            if new[i+1][j] == '*':
+                count += 1
+            if new[i+1][j+1] == '*':
+                count += 1
+            new[i][j] = count
+for i in range(1,n+1):
+    for j in range(1,m+1):
+        print(new[i][j],end=(''))
+    print()
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char str[11]={0};
+    gets(str);
+    int len=strlen(str);
+    char result[15]={0};
+    int j=0;
+    for(int i=0;str[i]!='\0';j++)
+    {
+        if((len-i)%3==0&&i!=0&&result[j-1]!=',')
+            result[j]=',';
+        else
+        {
+            result[j]=str[i];
+            i++;
+        }
+    }
+    printf("%s",result);
+    return 0;
+}
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+int main()
+{
+    char str[11]={0};
+    gets(str);
+    int len =strlen(str);
+    int i=0;
+    bool flag=true;
+    while(i<len)
+    {
+        if((len-i)%3==0&&i!=0)
+        {
+            printf(",");
+            flag=false;
+            i++;
+        }
+        else
+        {
+            if(!flag)
+            {
+                i--;
+                flag=true;
+            }
+            printf("%c",str[i]);
+            i++;
+        }
+    }
+    return 0;
+}
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,m;
+    scanf("%d %d",&n,&m);
+    char*p=malloc(sizeof(char)*n);
+    scanf("%s",&*p);
+    while(m--)
+    {
+        int l,r;
+        scanf("%d %d ",&l,&r);
+        char a,b;
+        scanf("%c %c",&a,&b);
+        for(int i=l-1;i<r;i++)
+        {
+            if(p[i]==a)
+                p[i]=b;
+        }
+    }
+    printf("%s",p);
+    return 0;
+}
