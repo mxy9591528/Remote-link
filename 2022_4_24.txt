@@ -1,0 +1,129 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<math.h>
+bool Isprime(long long n)
+{
+    for(int i=2;i<sqrt(n);i++)
+    {
+        if(n%i==0)
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int ret=n,count=1,part=n/10,sump=0;
+    while(ret/=10)
+    {
+        count++;
+    }
+    for(int i=1;i<count;i++)
+    {
+        sump+=(part%10)*pow(10,count-i-1);
+        part/=10;
+    }
+    long long sum=sump+n*pow(10,count-1);
+    if(Isprime(sum))
+        printf("prime");
+    else
+        printf("noprime");
+    return 0;
+}
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int judge(int n)
+{
+    int ret=sqrt(n);
+    if(n==ret*ret)
+        return 0;
+    else
+        return n;
+}
+int main()
+{
+    int n,max=0;
+    scanf("%d",&n);
+    int *p=malloc(sizeof(int)*n);
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&p[i]);
+        int ret=judge(p[i]);
+        if(ret>max)
+            max=ret;
+    }
+    printf("%d",max);
+    return 0;
+}
+#include<stdio.h>
+int main()
+{
+    long long t,n,i;
+    scanf("%lld",&t);
+    while(t--)
+    {
+        long long count=0,num=0;
+        scanf("%lld",&n);
+        while(n)//判断二进制位上是否为1
+        {
+            if(n&1)
+                count++;
+            n>>=1;
+        }
+        for(i=0;i<count;i++)
+            num=num*2+1;
+        printf("%lld %lld\n",count,num);
+    }
+    return 0;
+}
+#include<stdio.h>
+int move(int n)
+{
+    if(n==1)
+        return 2;
+    else
+        return 3*move(n-1)+2;
+}
+int main()
+{
+    int n;
+    while(~scanf("%d",&n))
+    {
+//         int ret=1;
+//         for(int i=1;i<=n;i++)
+//             ret*=3;
+        int ret=move(n);
+        printf("%d\n",ret);
+    }
+}#include<stdio.h>
+#include<stdbool.h>
+#include<math.h>
+bool Isprime(int n)
+{
+	if(n==2)
+	return true;
+    if(n%2==0||i==1)
+        return false;
+    for(int i=3;i<=sqrt(n);i+=2)
+    {
+        if(n%i==0)
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n;
+        scanf("%d",&n);
+        if(Isprime(n))
+            printf("true\n");
+        else
+            printf("false\n");
+    }
+}
