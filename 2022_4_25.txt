@@ -1,0 +1,118 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* deleteDuplicates(struct ListNode* head ) {
+    // write code here
+    struct ListNode*cur=head,*prev=NULL;
+    while(cur&&cur->next)
+    {
+        if(cur->val==cur->next->val)
+        {
+            if(!prev)
+            {
+                head=cur->next;
+                free(cur);
+                cur=head;
+            }
+            else
+            {
+                prev->next=cur->next;
+                free(cur);
+                cur=prev;
+            }
+        }
+        else
+        {
+            prev=cur;
+            cur=cur->next;
+        }
+    }
+    return head;
+}
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* deleteDuplicates(struct ListNode* head ) {
+    // write code here
+    struct ListNode*cur=head;
+    while(cur&&cur->next)
+    {
+        if(cur->val==cur->next->val)
+        {
+            struct ListNode*ret=cur->next;
+            cur->next=cur->next->next;
+            free(ret);
+        }
+        else
+            cur=cur->next;
+    }
+    return head;
+}
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ *
+ * C语言声明定义全局变量请加上static，防止重复定义
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* deleteDuplicates(struct ListNode* head ) {
+    // write code here
+    struct ListNode*ret=(struct ListNode*)malloc(sizeof(struct ListNode));
+    ret->next=head;
+    struct ListNode*slow=ret,*fast=head;
+    bool count=false;
+    while(fast&&fast->next)
+    {
+        if(fast->val==fast->next->val)
+        {
+            count=true;
+            fast->next=fast->next->next;
+        }
+        else
+        {
+            if(count)
+            {
+                slow->next=fast->next;
+                count=false;
+            }
+            else
+                slow=fast;
+            fast=fast->next;
+        }
+    }
+    if(count)
+        slow->next=fast->next;
+    return ret->next;
+}
