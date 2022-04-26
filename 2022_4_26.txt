@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    int a,b;
+    cin>>a>>b;
+    cout<<a+b;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    int a,b;
+    cin>>a>>b;
+    cout<<(a>b?a:b);
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    int a,b;
+    cin>>a>>b;
+    int temp=a;
+    a=a>b?a:b;
+    if(temp!=a)
+        b=temp;
+    cout<<a+b<<" "<<a-b<<" "<<a*b<<" "<<a/b<<" "<<a%b;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int a = 0;
+    int b = 0;
+    cin >> a;
+    cin >> b;
+
+    //write your code here.......
+    int temp=a;
+    a=b;
+    b=temp;
+
+    cout << a << " " << b << endl;
+    
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int a, b, c;
+    cin >> a;
+    cin >> b;
+    cin >> c;
+
+    // write your code here......
+    cout<<(a>b?a>c?a:c:b>c?b:c);
+
+    return 0;
+}
