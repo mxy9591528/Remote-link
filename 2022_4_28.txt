@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int score;
+    cin >> score;
+
+    // write your code here......
+    if(score>=90&&score<=100)
+        cout<<"优秀";
+    else if(score>=80&&score<=89)
+        cout<<"良";
+    else if(score>=70&&score<=79)
+        cout<<"中";
+    else if(score>=60&&score<=69)
+        cout<<"及格";
+    else if(score>=0&&score<=59)
+        cout<<"差";
+    else
+        cout<<"成绩不合法";
+    return 0;
+}
