@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int month;
+    cin >> month;
+
+    // write your code here......
+    switch(month)
+    {
+        case 3:
+        case 4:
+        case 5:
+            cout<<"春季";
+            break;
+        case 6:
+        case 7:
+        case 8:
+            cout<<"夏季";
+            break;
+        case 9:
+        case 10:
+        case 11:
+            cout<<"秋季";
+            break;
+        case 12:
+        case 1:
+        case 2:
+            cout<<"冬季";
+            break;
+        default:
+            cout<<"不合法";
+    }
+    
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int n;
+    cin >> n;
+    int sum = 0;
+    
+    // write your code here......
+    for(int i=2;i<=n;i+=2)
+        sum+=i;
+    
+
+    cout << sum << endl;
+    
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int n;
+    cin >> n;
+    long long factorial = 1;
+    
+    // write your code here......
+    for(int i=1;i<=n;i++)
+        factorial*=i;
+
+    cout << factorial << endl;
+    
+    return 0;
+}
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    
+    // write your code here......
+    for(int i=100;i<1000;i++)
+    {
+        int ret=i,sum=0;
+        while(ret)
+        {
+            sum+=pow(ret%10,3);
+            ret/=10;
+        }
+        if(i==sum)
+            cout<<i<<endl;
+    }
+
+    return 0;
+}
