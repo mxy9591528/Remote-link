@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int n;
+    cin >> n;
+
+    // write your code here......
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=i;j++)
+            cout<<j<<" * "<<i<<" = "<<i*j<<"    ";
+        cout<<endl;
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    long long sum=0,ret=9;
+    int n=10;
+    while(n--)
+    {
+        sum+=ret;
+        ret=ret*10+9;
+    }
+    cout<<sum;
+    return 0;
+}
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+
+    // 下落的高度和落地的次数
+    double h;
+    int n;
+    cin >> h;
+    cin >> n;
+
+    // write your code here......
+    double sum=h;
+    while((n--)-1)
+    {
+        h/=2;
+        sum+=2*h;
+    }
+    cout<<fixed<<setprecision(1)<<sum<<' '<<h/2;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    int n;
+    bool flag=true;
+    cin>>n;
+    if(n%2==0)
+        flag=false;
+    if(n==2)
+        flag=true;
+    for(int i=3;i<n/2;i+=2)
+    {
+        if(n%i==0)
+            flag=false;
+    }
+    if(flag)
+        cout<<"是质数";
+    else
+        cout<<"不是质数";
+    return 0;
+}
