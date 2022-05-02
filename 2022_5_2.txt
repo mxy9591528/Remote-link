@@ -1,0 +1,167 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int arr[6] = { 0 };
+    int len = sizeof(arr) / sizeof(int);
+    
+    for (int i = 0; i < len; i++) {
+        cin >> arr[i];
+    }
+
+    // write your code here......
+    int max=arr[0],min=arr[0];
+    for(int i=1;i<6;i++)
+    {
+        if(max<arr[i])
+            max=arr[i];
+    }
+    for(int i=1;i<6;i++)
+    {
+        if(min>arr[i])
+            min=arr[i];
+    }
+    cout<<min<<' '<<max;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int arr[6] = { 0 };
+
+    int len = sizeof(arr) / sizeof(int);
+    
+    for (int i = 0; i < len; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "[";
+    for (int i = 0; i < len; i++) {
+        if (i == len - 1) {
+            cout << arr[i] << "]" << endl;
+            break;
+        }
+        cout << arr[i] << ", ";
+    }
+
+    // write your code here......
+    int left=0,right=len-1;
+    while(left<right)
+    {
+        int temp=arr[left];
+        arr[left]=arr[right];
+        arr[right]=temp;
+        left++;
+        right--;
+    }
+
+    cout << "[";
+    for (int i = 0; i < len; i++) {
+        if (i == len - 1) {
+            cout << arr[i] << "]" << endl;
+            break;
+        }
+        cout << arr[i] << ", ";
+    }
+
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int arr[6] = { 0 };
+    int len = sizeof(arr) / sizeof(int);
+    
+    for (int i = 0; i < len; i++) {
+        cin >> arr[i];
+    }
+    
+    // write your code here......
+    for(int i=0;i<len;i++)
+    {
+        int min=i;
+        {
+            for(int j=i+1;j<len;j++)
+            {
+                if(arr[min]>arr[j])
+                    min=j;
+            }
+        }
+        if(i!=min)
+        {
+            int temp=arr[i];
+            arr[i]=arr[min];
+            arr[min]=temp;
+        }
+    }
+//     for(int i=0;i<len;i++)
+//     {
+//         for(int j=0;j<len;j++)
+//         {
+//             if(arr[j]>arr[i])
+//             {
+//                 int temp=arr[i];
+//                 arr[i]=arr[j];
+//                 arr[j]=temp;
+//             }
+//         }
+//     }
+    for (int i = 0; i < len; i++) {
+        cout<<arr[i]<<' ';
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int arr[6] = { 0 };
+    int len = sizeof(arr) / sizeof(int);
+    
+    for (int i = 0; i < len; i++) {
+        cin >> arr[i];
+    }
+    
+    // write your code here......
+    for(int i=0;i<len;i++)
+    {
+        int min=i;
+        for(int j=i+1;j<len;j++)
+        {
+            if(arr[min]>arr[j])
+                min=j;
+        }
+        if(i!=min)
+            swap(arr[i],arr[min]);
+    }
+    for(int i=0;i<len;i++)
+        cout<<arr[i]<<' ';
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int arr[4][3] = {{22,66,44},{77,33,88},{25,45,65},{11,66,99}
+        // write your code here......
+    };
+    
+    int sum = 0;
+    
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 3; j++) {
+            sum += arr[i][j];
+        }
+    }
+    
+    cout << sum << endl;
+    
+    return 0;
+}
