@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    cin>>s;
+    // write your code here......
+    int c_a=0,c_b=0,c_c=0;
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]=='a')
+            c_a++;
+        if(s[i]=='b')
+            c_b++;
+        if(s[i]=='c')
+            c_c++;
+    }
+    cout<<c_a<<' '<<c_b<<' '<<c_c;
+    return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    // write your code here......
+    int**p=new int*[n];
+    for(int i=0;i<n;i++)
+        p[i]=new int[n];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            p[i][j]=i+j;
+            cout<<p[i][j]<<' ';
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int mystrcmp(const char* src, const char* dst);
+
+int main() {
+
+    char s1[100] = { 0 };
+    char s2[100] = { 0 };
+
+    cin.getline(s1, sizeof(s1));
+    cin.getline(s2, sizeof(s2));
+
+    int ret = mystrcmp(s1, s2);
+
+    cout << ret << endl;
+
+    return 0;
+}
+
+int mystrcmp(const char* src, const char* dst) {
+
+    // write your code here......
+    while(*src&&*dst)
+    {
+        if(*src-*dst>0)
+            return 1;
+        else if(*src-*dst<0)
+            return -1;
+        src++;
+        dst++;
+    }
+    if(*src=='\0'&&*dst=='\0')
+        return 0;
+    else if(*src=='\0'&&*dst!='\0')
+        return -1;
+    else
+        return 1;
+}
