@@ -1,0 +1,147 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+
+    char str[100] = { 0 };
+    char substr[100] = { 0 };
+
+    cin.getline(str, sizeof(str));
+    cin.getline(substr, sizeof(substr));
+
+    int count = 0;
+
+    // write your code here......
+    for(int i=0;i<strlen(str)-strlen(substr)+1;i++)
+    {
+        if(!strncmp(str+i,substr,strlen(substr)))
+            count++;
+    }
+    
+    cout << count << endl;
+
+    return 0;
+}
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+
+    string str;
+    getline(cin, str);
+
+    int whitespace = 0;
+    int digits = 0;
+    int chars = 0;
+    int others = 0;
+
+    // write your code here......
+    for(int i=0;i<str.length();i++)
+    {
+        if(isalpha(str[i]))
+            chars++;
+        else if(isdigit(str[i]))
+            digits++;
+        else if(isspace(str[i]))
+            whitespace++;
+        else
+            others++;
+    }
+
+    cout << "chars : " << chars
+        << " whitespace : " << whitespace
+        << " digits : " << digits
+        << " others : " << others << endl;
+
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int getSum(int n);
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    cout << getSum(n) << endl;
+
+    return 0;
+}
+
+int getSum(int n) {
+
+    // write your code here......
+    if(n<3)
+        return 1;
+    else
+       return getSum(n-1)+getSum(n-2);
+}
+#include <iostream>
+using namespace std;
+
+int getSum(int n);
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    cout << getSum(n) << endl;
+
+    return 0;
+}
+
+int getSum(int n) {
+
+    // write your code here......
+    if(n<3)
+        return 1;
+    else
+    {
+        int a=1,b=1,sum=2;
+        for(int i=2;i<n;i++)
+        {
+            sum=a+b;
+            b=a;
+            a=sum;
+        }
+        return sum;
+    }
+}
+#include <iostream>
+using namespace std;
+
+int getSum(int n);
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    cout << getSum(n) << endl;
+
+    return 0;
+}
+
+int getSum(int n) {
+
+    // write your code here......
+    if(n<3)
+        return 1;
+    else
+    {
+        int a=1,b=1,sum=2;
+        for(int i=2;i<n;i++)
+        {
+            sum=a+b;
+            b=a;
+            a=sum;
+        }
+        return sum;
+    }
+}
