@@ -1,0 +1,109 @@
+#include <iostream>
+using namespace std;
+
+// write your code here......
+void Swap(int&a,int&b)
+{
+    int temp=a;
+    a=b;
+    b=temp;
+}
+
+int main() {
+
+    int m, n;
+    cin >> m;
+    cin >> n;
+
+    // write your code here......
+    Swap(m,n);
+
+    cout << m << " " << n << endl;
+
+    return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+// write your code here......
+void Reverse(string &s)
+{
+    for(int i=0;i<s.length()/2;i++)
+    {
+        char temp=s[i];
+        s[i]=s[s.length()-1-i];
+        s[s.length()-1-i]=temp;
+    }
+}
+int main(){
+    string s;
+    getline(cin,s);
+    // write your code here......
+    Reverse(s);
+    cout<<s;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+class Cube {
+
+    // write your code here......
+    public:
+    int length;
+    int width;
+    int height;
+    void setLength(int n)
+    {
+        this->length=n;
+    }
+    void setWidth(int n)
+    {
+        this->width=n;
+    }
+    void setHeight(int n)
+    {
+        this->height=n;
+    }
+    int getLength()
+    {
+        return this->length;
+    }
+    int getWidth()
+    {
+        return this->width;
+    }
+    int getHeight()
+    {
+        return this->height;
+    }
+    int getArea()
+    {
+        return (this->height*this->length+this->height*this->width+this->length*this->width)*2;
+    }
+    int getVolume()
+    {
+        return this->height*this->length*this->width;
+    }
+
+};
+
+int main() {
+
+    int length, width, height;
+    cin >> length;
+    cin >> width;
+    cin >> height;
+
+    Cube c;
+    c.setLength(length);
+    c.setWidth(width);
+    c.setHeight(height);
+
+    cout << c.getLength() << " "
+        << c.getWidth() << " "
+        << c.getHeight() << " "
+        << c.getArea() << " "
+        << c.getVolume() << endl;
+
+    return 0;
+}
