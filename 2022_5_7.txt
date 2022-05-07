@@ -1,0 +1,157 @@
+#include <iostream>
+using namespace std;
+
+// 点类
+class Pointer {
+
+    private:
+        int x;  // x 坐标
+        int y;  // y 坐标
+
+    public:
+        void setX(int x) {
+            this->x = x;
+        }
+
+        int getX() {
+            return x;
+        }
+
+        void setY(int y) {
+            this->y = y;
+        }
+
+        int getY() {
+            return y;
+        }
+
+};
+
+// 圆类
+class Circle {
+
+    private:
+        Pointer center; // 圆心
+        int radius; // 半径
+
+    public:
+        void setCenter(int x, int y) {
+            center.setX(x);
+            center.setY(y);
+        }
+
+        void setRadius(int radius) {
+            this->radius = radius;
+        }
+
+        // write your code here......
+        void isPointerInCircle(Pointer p)
+        {
+            int a=p.getX()-this->center.getX();
+            int b=p.getY()-this->center.getY();
+            if(a*a+b*b>this->radius*this->radius)
+                cout<<"out"<<endl;
+            else if(a*a+b*b==this->radius*this->radius)
+                cout<<"on"<<endl;
+            else
+                cout<<"in"<<endl;
+        }
+
+};
+
+int main() {
+
+    // 键盘输入点的坐标
+    int x, y;
+    cin >> x;
+    cin >> y;
+
+    // 创建一个点
+    Pointer p;
+    p.setX(x);
+    p.setY(y);
+
+    // 创建一个圆
+    Circle c;
+    c.setCenter(5, 0);
+    c.setRadius(5);
+
+    // 判断点和圆的关系
+    c.isPointerInCircle(p);
+
+    return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+class rectangle{
+	private:
+		int length,width;
+	public:
+		void set(int x,int y){
+			length=x;
+			width=y;
+		}
+		int getlength(){
+			return length;
+		}
+		int getwidth(){
+			return width;
+		}
+		int area(){
+			return length*width;
+		}
+		void compare(rectangle a){
+            // write your code here......
+            if(this->area()>a.area())
+                cout<<1;
+            else
+                cout<<0;
+		}
+};
+int main(){
+	int l1,w1,l2,w2;
+	cin>>l1>>w1>>l2>>w2;
+	rectangle a,b;
+	a.set(l1,w1);
+	b.set(l2,w2);
+	a.compare(b);
+	return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+class rectangle{
+	private:
+		int length,width;
+	public:
+		void set(int x,int y){
+			length=x;
+			width=y;
+		}
+		int getlength(){
+			return length;
+		}
+		int getwidth(){
+			return width;
+		}
+		int area(){
+			return length*width;
+		}
+		// write your code here......
+    string cancover(rectangle x)
+    {
+        if(this->getlength()>=x.getlength()&&this->getwidth()>=x.getwidth()&&this->area()>=x.area()
+          ||this->getlength()>=x.getwidth()&&this->getwidth()>=x.getlength()&&this->area()>=x.area())
+            return "yes";
+        else
+            return "no";
+    }
+};
+int main(){
+	int l1,w1,l2,w2;
+	cin>>l1>>w1>>l2>>w2;
+	rectangle a,b;
+	a.set(l1,w1);
+	b.set(l2,w2);
+	cout<<a.cancover(b);
+	return 0;
+}
