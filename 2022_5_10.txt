@@ -1,0 +1,264 @@
+#include<bits/stdc++.h>
+using namespace std;
+class phone{
+	// write your code here......
+	friend class myphone;
+	private:
+		int price;
+	public:
+		phone(int x){
+			price=x;
+		}
+}; 
+class myphone{
+	private:
+		phone a;
+	public:
+		myphone(int x):a(x){
+		}
+		int getprice(){
+			return a.price;
+		}
+};
+int main(){
+	int p;
+	cin>>p;
+	myphone a(p);
+	cout<<a.getprice();
+	return 0;
+}
+#include <iostream>
+using namespace std;
+
+class Time {
+
+    public:
+        int hours;      // 小时
+        int minutes;    // 分钟
+
+        Time() {
+            hours = 0;
+            minutes = 0;
+        }
+
+        Time(int h, int m) {
+            this->hours = h;
+            this->minutes = m;
+        }
+
+        void show() {
+            cout << hours << " " << minutes << endl;
+        }
+
+        // write your code here......
+        bool operator <(Time&t)
+        {
+           return hours*60+minutes<t.hours*60+t.minutes;
+        }
+
+};
+
+int main() {
+    int h, m;
+    cin >> h;
+    cin >> m;
+
+    Time t1(h, m);
+    Time t2(6, 6);
+	
+    if (t1<t2) cout<<"yes"; else cout<<"no";
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+class Base {
+
+    private:
+        int x;
+        int y;
+
+    public:
+        Base(int x, int y) {
+            this->x = x;
+            this->y = y;
+        }
+
+        int getX() {
+            return x;
+        }
+
+        int getY() {
+            return y;
+        }
+
+};
+
+class Sub : public Base {
+
+    private:
+        int z;
+
+    public:
+        Sub(int x, int y, int z) :Base(x,y) {
+            // write your code here
+            this->z=z;
+        }
+
+        int getZ() {
+            return z;
+        }
+
+        int calculate() {
+            return Base::getX() * Base::getY() * this->getZ();
+        }
+
+};
+
+int main() {
+
+    int x, y, z;
+    cin >> x;
+    cin >> y;
+    cin >> z;
+    Sub sub(x, y, z);
+    cout << sub.calculate() << endl;
+    
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+class Base {
+
+private:
+    int x;
+    int y;
+
+public:
+    Base(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
+    }
+
+    void calculate() {
+        cout << getX() * getY() << endl;
+    }
+
+};
+
+class Sub : public Base {
+// write your code here......
+    public:
+    Sub(int x,int y):Base(x,y){}
+    void calculate()
+    {
+        if(getY())
+            cout<<this->getX()/this->getY()<<endl;
+        else
+            cout<<"Error"<<endl;
+    }
+};
+
+int main() {
+
+    int x, y, z;
+    cin >> x;
+    cin >> y;
+    Sub sub(x, y);
+    sub.calculate();
+    
+    return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+class rectangle{
+	private:
+		int length,width;
+	public:
+		rectangle(int x,int y){
+			length=x;
+			width=y;
+		}
+		void set(int x,int y){
+			length=x;
+			width=y;
+		}
+		int area(){
+			return length*width;
+		}
+};
+class cuboid:public rectangle{
+	private:
+		int height;
+	public:
+		// write your code here...
+		cuboid(int x,int y,int z):rectangle(x,y)
+        {
+           this->height=z; 
+        }
+    int getvolume()
+    {
+        return area()*height;
+    }
+};
+int main(){
+	int x,y,z;
+	cin>>x>>y>>z;
+	cuboid a(x,y,z);
+	cout<<a.getvolume();
+	return 0;
+}
+#include<bits/stdc++.h>
+using namespace std;
+class rectangle{
+	private:
+		int length,width;
+	public:
+		rectangle(int x,int y){
+			length=x;
+			width=y;
+		}
+		void set(int x,int y){
+			length=x;
+			width=y;
+		}
+		int getlength(){
+			return length;
+		}
+		int getwidth(){
+			return width;
+		}
+		int area(){
+			return length*width;
+		}
+};
+class cuboid:public rectangle{
+	private:
+		int height;
+	public:
+		// write your code here...
+		cuboid(int x,int y,int z):rectangle(x,y)
+        {
+            this->height=z;
+        }
+    int area()
+    {
+        return 2*(rectangle::area()+getlength()*height+getwidth()*height);
+    }
+};
+int main(){
+	int x,y,z;
+	cin>>x>>y>>z;
+	cuboid a(x,y,z);
+	cout<<a.rectangle::area()<<'\n'<<a.area();
+	return 0;
+}
