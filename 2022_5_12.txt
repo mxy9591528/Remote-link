@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+
+    int letter = 0;
+    int digit = 0;
+    int space = 0;
+    int other = 0;
+    
+    char buf[1024] = {0};
+    cin.getline(buf, sizeof(buf));
+
+    // write your code here......
+    for(int i=0;buf[i]!='\0';i++)
+    {
+        if(isalpha(buf[i]))
+            letter++;
+        else if(isdigit(buf[i]))
+            digit++;
+        else if(isspace(buf[i]))
+            space++;
+        else
+            other++;
+    }
+   
+    cout << "letter:" << letter << " digit:" << digit << " space:" << space << " other:" << other << endl;
+
+    return 0;
+}
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double d = scanner.nextDouble();
+        System.out.println(Main.typeConversion(d));
+    }
+    public static int typeConversion(double d){
+
+        //write your code here......
+       return(int)d;
+    }
+}
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        scanner.close();
+
+        //write your code here......
+         System.out.printf("%d %d %d %d %d",a+b,a>b?a-b:b-a,a*b,a>b?a/b:b/a,a>b?a%b:b%a);
+    } 
+}
