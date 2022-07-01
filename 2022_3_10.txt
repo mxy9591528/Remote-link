@@ -5,6 +5,7 @@ struct Book
 	char str[30];
 	int p;
 }s;
+
 void sort(struct Book*p, int n)
 {
 	for (int i = 0; i < n; i++)
